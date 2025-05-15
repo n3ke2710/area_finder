@@ -1,22 +1,22 @@
 CC = gcc
 ASM = nasm
 CFLAGS = -Wall -Wextra -std=c99 -m32
-ASMFLAGS = -f macho32
-LDFLAGS = -m32
+ASMFLAGS = -f elf32
+LDFLAGS = -m32 -lm
 
 all: area_calculator
 
-area_calculator: main.o math_funcs.o funcs.o
-    $(CC) $(LDFLAGS) -o $@ $^ -lm
+area_calculator: funcs.o main.o math_funcs.o
+  $(CC) $(LDFLAGS) -o $@ $^
 
-main.o: main.c
-    $(CC) $(CFLAGS) -c $<
+main.o: main.c math_funcs.h
+  $(CC) $(CFLAGS) -c $<
 
-math_funcs.o: math_funcs.c
-    $(CC) $(CFLAGS) -c $<
+math_funcs.o: math_funcs.c math_funcs.h
+  $(CC) $(CFLAGS) -c $<
 
 funcs.o: funcs.asm
-    $(ASM) $(ASMFLAGS) -o $@ $<
+  $(ASM) $(ASMFLAGS) -o $@ $<
 
 clean:
-    rm -f *.o area_calculator
+  rm -f *.o area_calculator
