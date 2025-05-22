@@ -56,6 +56,8 @@ double root(double (*f)(double), double (*g)(double), double (*df)(double), doub
         if (x_new > b) x_new = b;
         
         if (fabs(x_new - x) < eps) {
+            printf("x_new = %f\n", x_new);
+            printf("Count of iterations: %d\n", i);
             return x_new;
         }
         
