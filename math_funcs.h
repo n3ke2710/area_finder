@@ -21,4 +21,6 @@ void test_integral(double eps);
 extern int debug_mode;
 extern int test_root_mode;
 extern int test_integral_mode;
+extern int test_iterations_mode;
+
 #endif

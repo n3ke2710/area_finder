@@ -4,6 +4,7 @@
 int debug_mode = 0;
 int test_root_mode = 0;
 int test_integral_mode = 0;
+int test_iterations_mode = 0;
 
 extern double f1(double x);
 extern double f2(double x);
@@ -58,8 +59,12 @@ double root(double (*f)(double), double (*g)(double), double (*df)(double), doub
         if (x_new > b) x_new = b;
         
         if (fabs(x_new - x) < eps) {
-            printf("x_new = %f\n", x_new);
-            printf("Count of iterations: %d\n", i);
+            if (test_iterations_mode) {
+                printf("x_new = %f\n", x_new);
+            }
+            if (test_iterations_mode || debug_mode) {
+                printf("Count of iterations: %d\n", i);
+            }
             return x_new;
         }
         

@@ -37,6 +37,15 @@ int main(int argc, char *argv[]) {
             if (strcmp(argv[i], "--test_integral") == 0) {
                 test_integral_mode = 1;
             }
+            if (strcmp(argv[i], "--x") == 0) {
+                x = atof(argv[i+1]);
+            }
+            if (strcmp(argv[i], "--eps") == 0) {
+                eps = atof(argv[i+1]);
+            }
+            if (strcmp(argv[i], "--test_iterations") == 0) {
+                test_iterations_mode = 1;
+            }
         }
     }
 
