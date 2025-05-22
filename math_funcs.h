@@ -15,7 +15,10 @@ double derivative(double (*f)(double), double x, double h);
 double root(double (*f)(double), double (*g)(double), double a, double b, double eps);
 double integral(double (*f)(double), double a, double b, double eps);
 double calculate_area(double eps);
+void test_root(double eps);
+void test_integral(double eps);
 
 extern int debug_mode;
-
+extern int test_root_mode;
+extern int test_integral_mode;
 #endif

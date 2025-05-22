@@ -2,6 +2,8 @@
 #include <stdio.h>
 
 int debug_mode = 0;
+int test_root_mode = 0;
+int test_integral_mode = 0;
 
 extern double f1(double x);
 extern double f2(double x);
@@ -68,6 +70,26 @@ double root(double (*f)(double), double (*g)(double), double (*df)(double), doub
     }
     
     return x;
+}
+
+
+void test_root(double eps){
+    double x1 = root(f2, f1, f2_diff, f1_diff, 0, 1, eps);
+    printf("\nroot of f1 and f2 = %f\n", x1);
+    double x2 = root(f2, f3, f2_diff, f3_diff, -2, 1, eps);
+    printf("\nroot of f2 and f3 = %f\n", x2);
+    double x3 = root(f1, f3, f1_diff, f3_diff, -2, -1.5, eps);
+    printf("\nroot of f1 and f3 = %f\n", x3);
+}
+
+void test_integral(double eps){
+    printf("\nintegral of f1, f2, f3 from 0 to 1\n");
+    double integral1 = integral(f1, 0, 1, eps);
+    printf("\nintegral of f1 = %f\n", integral1);
+    double integral2 = integral(f2, 0, 1, eps);
+    printf("\nintegral of f2 = %f\n", integral2);
+    double integral3 = integral(f3, 0, 1, eps);
+    printf("\nintegral of f3 = %f\n", integral3);
 }
 
 double integral(double (*f)(double), double a, double b, double eps) {

@@ -9,6 +9,8 @@ void print_help() {
     printf("  --eps     - задать точность вычислений (по умолчанию 1e-5)\n");
     printf("  --x       - задать значение x для тестирования функций (по умолчанию 0.375)\n");
     printf("  --test    - включить режим отладки с подробным выводом\n");
+    printf("  --test_root - тестировать нахождение корней\n");
+    printf("  --test_integral - тестировать нахождение интеграла\n");
     printf("\nФункции math_funcs:");
     printf("  root            - находит точки пересечения двух функций");
     printf("  integral        - находит интеграл функции на отрезке");
@@ -19,16 +21,33 @@ int main(int argc, char *argv[]) {
     double eps = 1e-5;
     double x = 0.375;
 
+
     // Обработка аргументов командной строки
     for (int i = 1; i < argc; i++) {
         if (strcmp(argv[i], "--help") == 0) {
             print_help();
             return 0;
-        } else if (strcmp(argv[i], "--test") == 0) {
-            debug_mode = 1;
+        } else {
+            if (strcmp(argv[i], "--test") == 0) {
+                debug_mode = 1;
+            }
+            if (strcmp(argv[i], "--test_root") == 0) {
+			    test_root_mode = 1;
+            } 
+            if (strcmp(argv[i], "--test_integral") == 0) {
+                test_integral_mode = 1;
+            }
         }
     }
 
+    if (test_root_mode) {
+        test_root(eps);
+        return 0;
+    }
+    if (test_integral_mode) {
+        test_integral(eps);
+        return 0;
+    }
     // Тестируем функции
     if (debug_mode) {
         printf("f1(%.3f) = %f\n", x, f1(x));
