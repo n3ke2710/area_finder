@@ -54,6 +54,10 @@ int main(int argc, char *argv[]) {
         test_root(eps);
         return 0;
     }
+    if (test_iterations_mode) {
+        test_root(eps);
+        return 0;
+    }
     if (test_integral_mode) {
         test_integral(eps);
         return 0;
