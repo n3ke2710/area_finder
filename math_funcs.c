@@ -31,6 +31,12 @@ double root(double (*f)(double), double (*g)(double), double (*df)(double), doub
         }
         double current_diff = f_res - g_res;
         if (fabs(current_diff) < eps) {
+			if (debug_mode) {
+                printf("x = %f\n", x);
+            }
+            if (test_iterations_mode || debug_mode) {
+                printf("Count of iterations: %d\n", i);
+            }
             return x;
         }
         if (debug_mode) {
@@ -59,7 +65,7 @@ double root(double (*f)(double), double (*g)(double), double (*df)(double), doub
         if (x_new > b) x_new = b;
         
         if (fabs(x_new - x) < eps) {
-            if (test_iterations_mode) {
+            if (debug_mode) {
                 printf("x_new = %f\n", x_new);
             }
             if (test_iterations_mode || debug_mode) {
