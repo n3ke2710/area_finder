@@ -16,4 +16,6 @@ double root(double (*f)(double), double (*g)(double), double a, double b, double
 double integral(double (*f)(double), double a, double b, double eps);
 double calculate_area(double eps);
 
+extern int debug_mode;
+
 #endif
